@@ -1,4 +1,7 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'Login.dart';
+import 'HomePage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,44 +12,77 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Iconnectvousdepanne',
-      theme: ThemeData(
-        primarySwatch: Colors.blue, // Couleur principale de l'application
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: IconnectHome(),
+      home: HomePage(),
     );
   }
 }
 
-class IconnectHome extends StatefulWidget {
-  const IconnectHome({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<IconnectHome> createState() => _IconnectHomeState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _IconnectHomeState extends State<IconnectHome> {
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Iconnectvousdepanne')
-      ),
-      body: Center(
-        //child: Text('Bienvenue sur Iconnectvousdepanne',style: TextStyle(fontSize: 28)),
-        child:
-          Column(
-            //mainAxisAlignment: MainAxisAlignment.center,
-            
-            children: [
-              Text('Bienvenue',style: TextStyle(fontSize: 28, color: Colors.blue)),
-
-              Text('Iconnectvousdepanne',style: TextStyle(fontSize: 35, color: Colors.orange))
-            ],
-          )
+      backgroundColor: const Color(0xFF75CBF2),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 100, right: 30),
+              child: Image.asset(
+                'assets/images/demarrage.png',
+                fit: BoxFit.contain,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 0),
+              child: Text(
+                'Iconnect \nvous \nDépanne!'.toUpperCase(),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 200, left: 100),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.white,
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  elevation: 10,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyHomePage()),
+                  );
+                },
+                child: const Text(
+                  'Démarrer',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
